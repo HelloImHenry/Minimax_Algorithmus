@@ -191,7 +191,7 @@ def maximieren(spieler,tiefe,alpha,beta):
     global spielFeld
     if tiefe == 0 or SpielFeldVoll() == True or FigurenInReihePrüfung(-1) == 4 or FigurenInReihePrüfung(1) == 4:
         if tiefe == 0:
-            return evaluiere(spieler)
+            return evaluiere()
         if SpielFeldVoll():
             return 0
         if FigurenInReihePrüfung(-1) == 4:
@@ -217,7 +217,7 @@ def minimieren(spieler,tiefe,alpha,beta):
     global spielFeld
     if tiefe == 0 or SpielFeldVoll() == True or FigurenInReihePrüfung(-1) == 4 or FigurenInReihePrüfung(1) == 4:
         if tiefe == 0:
-            return evaluiere(spieler)
+            return evaluiere()
         if SpielFeldVoll():
             return 0
         if FigurenInReihePrüfung(-1) == 4:
@@ -247,7 +247,7 @@ def generiereMöglicheZüge():
     return möglicheZüge
 
 
-def evaluiere(spieler):
+def evaluiere():
     global gespeicherterZug
     global spielFeld
     evaluierterWert = 0
@@ -259,9 +259,9 @@ def evaluiere(spieler):
             zuUntersuchendesFeld = zuUntersuchendeKombination[x]
             feldX = zuUntersuchendesFeld[0]
             feldY = zuUntersuchendesFeld[1]
-            if spielFeld[feldX][feldY] == spieler:
+            if spielFeld[feldX][feldY] == -1:
                 spielerFiguren = spielerFiguren+1
-            elif spielFeld[feldX][feldY] == -spieler:
+            elif spielFeld[feldX][feldY] == 1:
                 gegnerFiguren = gegnerFiguren+1
             #if str(self.feld.gewinnKombinationen[n]) == "[[3, 0], [4, 0], [5, 0], [6, 0]]":
                 #print(str(gegnerFiguren) + "_____")

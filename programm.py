@@ -2,6 +2,10 @@ from json.encoder import INFINITY
 import tkinter
 spielFeld = []
 gewinnKombinationen = []
+zeichenObjekte = []
+uiParameter = []
+spielerFarben = ["#0000FF","#FFFF00","#00BFFF","#DBA901"]
+        #cv,sizeX,sizeY,displayOffset,offsetY
 def generiereGewinnKombinationen():
     #Breite
     for y in range(6):
@@ -285,10 +289,7 @@ def BesterZug(tiefe,spieler):
         return gespeicherterZug
 
 
-zeichenObjekte = []
-uiParameter = []
-spielerFarben = ["#0000FF","#FFFF00","#00BFFF","#DBA901"]
-        #cv,sizeX,sizeY,displayOffset,offsetY
+
 
             
 def ZeichneFigur(x,y,spieler):

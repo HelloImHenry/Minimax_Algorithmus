@@ -1,7 +1,6 @@
 from json.encoder import INFINITY
 import tkinter
 import ZeichenProzesse
-zeichner = ZeichenProzesse.Zeichne()
 spielFeld = []
 gewinnKombinationen = []
 def generiereGewinnKombinationen():
@@ -47,7 +46,21 @@ displayOffset = 10
 fenster.geometry(str(sizeX+2*displayOffset)+"x"+ str(sizeY+offsetY+displayOffset))
 cv = tkinter.Canvas(fenster,width = sizeX+2*displayOffset, height=(sizeY+offsetY))
 cv.pack()
-zeichner.ZeichneTrennLinien([cv,sizeX,sizeY,displayOffset,offsetY])
+def ZeichneTrennLinien(uiInput):
+    uiParameter.clear()
+    for x in range(5):
+        uiParameter.append(uiInput[x])
+    curPos = 0
+    for x in range(8):
+        id = uiInput[0].create_line((uiInput[3]+curPos),(uiInput[4]),(uiInput[3]+curPos),uiInput[2]+uiInput[4])
+        zeichenObjekte.append(id)
+        curPos = curPos + (uiInput[1]/7)
+    curPos = 0
+    for x in range(7):
+        id = uiInput[0].create_line(uiInput[3],(curPos+uiInput[4]),uiInput[1]+uiInput[3],(curPos+uiInput[4]))
+        curPos = curPos + (uiInput[2]/6)
+        zeichenObjekte.append(id)
+ZeichneTrennLinien([cv,sizeX,sizeY,displayOffset,offsetY])
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 test = 0
 
@@ -86,7 +99,7 @@ def platziereFigur(feldX):
                 feldY = Physik(feldX)
                 spielFeld[feldX][feldY] = spielerAmZug
                 #Die Figur wird gezeichnet.
-                zeichner.ZeichneFigur(feldX,feldY,spielerAmZug)
+                ZeichneFigur(feldX,feldY,spielerAmZug)
                 #Es wird geprüft ob ein Spieler gewonnen hat.
                 anzahlDerFigurenInReihe = FigurenInReihePrüfung(spielerAmZug)
                 print(str(anzahlDerFigurenInReihe))
@@ -277,20 +290,7 @@ zeichenObjekte = []
 uiParameter = []
 spielerFarben = ["#0000FF","#FFFF00","#00BFFF","#DBA901"]
         #cv,sizeX,sizeY,displayOffset,offsetY
-def ZeichneTrennLinien(uiInput):
-    uiParameter.clear()
-    for x in range(5):
-        uiParameter.append(uiInput[x])
-    curPos = 0
-    for x in range(8):
-        id = uiInput[0].create_line((uiInput[3]+curPos),(uiInput[4]),(uiInput[3]+curPos),uiInput[2]+uiInput[4])
-        zeichenObjekte.append(id)
-        curPos = curPos + (uiInput[1]/7)
-    curPos = 0
-    for x in range(7):
-        id = uiInput[0].create_line(uiInput[3],(curPos+uiInput[4]),uiInput[1]+uiInput[3],(curPos+uiInput[4]))
-        curPos = curPos + (uiInput[2]/6)
-        zeichenObjekte.append(id)
+
             
 def ZeichneFigur(x,y,spieler):
     untenLinksY = uiParameter[2] + uiParameter[4]-(y*(uiParameter[2]/6))

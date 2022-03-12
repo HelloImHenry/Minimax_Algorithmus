@@ -1,6 +1,5 @@
 from json.encoder import INFINITY
 import tkinter
-import ZeichenProzesse
 spielFeld = []
 gewinnKombinationen = []
 def generiereGewinnKombinationen():
